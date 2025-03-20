@@ -11,3 +11,5 @@ deep-translator>=1.8.0
 python-multipart>=0.0.5
 gradio>=3.50.0
 python-dotenv==0.19.0
+wordcloud==1.9.3
+matplotlib==3.8.2
