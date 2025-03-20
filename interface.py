@@ -8,11 +8,6 @@ SPACE_URL = os.getenv("SPACE_URL", "http://localhost:7860")
 API_URL = f"{SPACE_URL}/api/analyze"
 
 def analyze_company(company_name):
-    try:
-        response = requests.post(API_URL, json={"name": company_name})
-        # ... rest of the existing interface code ...
-
-def analyze_company(company_name):
     """Send request to FastAPI backend and format results"""
     try:
         response = requests.post(
