@@ -21,7 +21,7 @@ def analyze_company(company_name):
             HF_API_URL,
             json={"name": company_name},
             headers={"Content-Type": "application/json"},
-            timeout=180
+            timeout=600
         )
         response.raise_for_status()
         return response.json()
