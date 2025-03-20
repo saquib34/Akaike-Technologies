@@ -11,7 +11,7 @@ from tenacity import retry, stop_after_attempt, wait_exponential
 # Configuration
 HF_API_URL = "https://saquib34-news-analyzer.hf.space/api/analyze"
 SAMPLE_COMPANIES = ["Microsoft", "Apple", "Google", "Amazon", "Tesla", "Meta"]
-REQUEST_TIMEOUT = 120  # 2 minutes
+REQUEST_TIMEOUT = 600  # 2 minutes
 CACHE_TTL = 1800  # 30 minutes
 
 # Helper functions
