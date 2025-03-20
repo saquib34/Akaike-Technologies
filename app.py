@@ -141,13 +141,11 @@ async def analyze(company: Company):
         "Coverage Differences": coverage_differences,
         "Topic Overlap": topic_overlap,
         "Final Sentiment Analysis": final_analysis,
-        "Audio": f"/static/{audio_path}"
+        "Audio": audio_path
     }
     return response
 
-from fastapi.staticfiles import StaticFiles
-# Change this line:
-app.mount("/static", StaticFiles(directory="static"), name="static")
+
 
 
 
