@@ -50,7 +50,7 @@ if st.button("Analyze"):
                     st.write(f"**Summary**: {article['Summary']}")
                     st.write(f"**Sentiment**: {article['Sentiment']}")
                     st.write(f"**URL**: [Read Full Article]({article['URL']})")
-                    st.write(f"**Key Topics**: {', '.join(article['Topics']}")
+                    st.write(f"**Key Topics**: {', '.join(article['Topics'])}")
             
             # Audio Section
             if result["Audio"]:
