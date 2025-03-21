@@ -243,27 +243,41 @@ if st.session_state.result:
             with col1:
                 try:
                     st.markdown("### Topic Overlap")
-                    common_topics = result.get('Topic Overlap', {}).get('Common Topics', [])
+                    common_topics = result.get('topic_overlap', {}).get('common_topics', [])
+                    
                     if common_topics:
-                        df = safe_dataframe({
+                        # Create DataFrame with safe data
+                        df = pd.DataFrame({
                             "Common Topics": common_topics,
-                            "Frequency": [1]*len(common_topics)
+                            "Frequency": [1] * len(common_topics)
                         })
                         st.dataframe(df, use_container_width=True)
                     else:
-                        st.warning("No common topics identified")
+                        st.warning("No common topics found")
+
                 except Exception as e:
                     st.error(f"Topic display error: {str(e)}")
 
             with col2:
                 try:
                     st.markdown("### Coverage Differences")
-                    coverage_data = result.get('Coverage Differences', [])
+                    coverage_data = result.get('coverage_differences', [])
+                    
                     if coverage_data:
-                        df = safe_dataframe(coverage_data).explode('Unique Topics')
+                        # Validate and transform data
+                        cleaned_data = []
+                        for item in coverage_data:
+                            cleaned_item = {
+                                "Comparison": item.get("comparison", "N/A"),
+                                "Unique Topics": ", ".join(item.get("unique_topics", []))
+                            }
+                            cleaned_data.append(cleaned_item)
+                        
+                        df = pd.DataFrame(cleaned_data)
                         st.dataframe(df, use_container_width=True, hide_index=True)
                     else:
                         st.warning("No coverage differences found")
+
                 except Exception as e:
                     st.error(f"Coverage display error: {str(e)}")
 
