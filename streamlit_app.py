@@ -261,7 +261,7 @@ if st.session_state.result:
             with col2:
                 try:
                     st.markdown("### Coverage Differences")
-                    coverage_data = result.get('coverage_differences', [])
+                    coverage_data = result.get('Coverage Differences', [])
                     
                     if coverage_data:
                         # Validate and transform data
