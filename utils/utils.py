@@ -8,7 +8,8 @@ from deep_translator import GoogleTranslator
 import base64
 from io import BytesIO
 from sentence_transformers import SentenceTransformer
-
+from pathlib import Path
+import tempfile
 # Initialize models
 sentiment_pipeline = pipeline(
     "sentiment-analysis",
@@ -87,12 +88,41 @@ def perform_comparative_analysis(articles):
     
     return sentiment_counts, coverage_differences, topic_overlap
 
+# Add validation in your backend's generate_hindi_tts function
 def generate_hindi_tts(text: str) -> str:
-    text = text[:1000]
-    text = GoogleTranslator(source='en', target='hi').translate(text)
-    tts = gTTS(text, lang='hi')
-    audio_buffer = BytesIO()
-    tts.save(audio_buffer)
-    audio_buffer.seek(0)
-
-    return base64.b64encode(audio_buffer.read()).decode('utf-8')
+    temp_dir = tempfile.mkdtemp()
+    try:
+        # Validate input
+        if not text or len(text.strip()) < 50:
+            return ""
+            
+        # Translation
+        translated = GoogleTranslator(source='en', target='hi').translate(text[:1000])
+        print(f"Translated text: {translated}")
+        if not translated:
+            return ""
+            
+        # Create temp file
+        temp_file = Path(temp_dir) / "hindi_summary.wav"
+        
+        # Generate audio
+        tts = gTTS(translated, lang='hi')
+        tts.save(temp_file)
+        
+        # Read and encode
+        with open(temp_file, "rb") as f:
+            audio_bytes = f.read()
+            
+        return base64.b64encode(audio_bytes).decode('utf-8')
+        
+    except Exception as e:
+        print(f"Audio Generation Error: {str(e)}")
+        return ""
+    finally:
+        # Cleanup - remove temp directory and contents
+        try:
+            for file in Path(temp_dir).glob("*"):
+                file.unlink()
+            Path(temp_dir).rmdir()
+        except Exception as cleanup_error:
+            print(f"Cleanup error: {str(cleanup_error)}")
