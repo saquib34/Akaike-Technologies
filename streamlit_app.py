@@ -325,9 +325,9 @@ with st.expander("Documentation & Support"):
     - **Technical Details**: System metrics and raw data
     
     ### Support
-    **Contact:** support@newsanalyzer.com  
-    **API Docs:** [API Documentation](https://api.newsanalyzer.com)  
-    **Service Status:** [Status Page](https://status.newsanalyzer.com)
+    **Contact:** shadmanshahin6@gmail.com
+    **API Docs:** [API Documentation](https://saquib34-news-analyzer.hf.space/docs)  
+    **Github Repo:** [Repo](https://github.com/saquib34/Akaike-Technologies)
     """)
 
 # Cache Management
