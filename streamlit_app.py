@@ -268,8 +268,8 @@ if st.session_state.result:
                         cleaned_data = []
                         for item in coverage_data:
                             cleaned_item = {
-                                "Comparison": item.get("comparison", "N/A"),
-                                "Unique Topics": ", ".join(item.get("unique_topics", []))
+                                "Comparison": item.get("Comparison", "N/A"),
+                                "Unique Topics": ", ".join(item.get("Unique Topics", []))
                             }
                             cleaned_data.append(cleaned_item)
                         
