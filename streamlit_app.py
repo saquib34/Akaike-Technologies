@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 from io import BytesIO
 from tenacity import retry, stop_after_attempt, wait_exponential
+import json
 
 # Configuration
 HF_API_URL = "https://saquib34-news-analyzer.hf.space/api/analyze"
